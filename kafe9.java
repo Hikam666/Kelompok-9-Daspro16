@@ -36,3 +36,49 @@ public class kafe9 {
             }
         } while (pilihan != 3);
     }
+    static void tambahkanPesanan(Scanner scanner) {
+        System.out.print("Masukkan nama pelanggan: ");
+        dataPesanan[jumlahPesanan][0] = scanner.nextLine(); 
+
+        System.out.print("Masukkan nomor meja: ");
+        dataPesanan[jumlahPesanan][1] = scanner.nextLine();
+
+        int totalHarga = 0;
+        String detailPesanan = "";
+        System.out.println("====== Silahkan Memesan ======");
+        System.out.println("===== MENU KAFE POLINEMA =====");
+        for (int i = 0; i < menu.length; i++) {
+            System.out.println((i + 1) + ". " + menu[i] + " - Rp " + hargaMenu[i]);
+        }
+
+        while (true) {
+            System.out.print("Pilih menu (masukkan nomor menu, atau 0 untuk selesai): ");
+            int nomorMenu = scanner.nextInt();
+
+            if (nomorMenu == 0) break;
+
+            if (nomorMenu < 1 || nomorMenu > menu.length) {
+                System.out.println("Menu tidak valid!");
+                continue;
+            }
+
+            System.out.print("Masukkan jumlah item untuk " + menu[nomorMenu - 1] + ": ");
+            int jumlahItem = scanner.nextInt();
+
+            if (jumlahItem <= 0) {
+                System.out.println("Jumlah item harus lebih dari 0!");
+                continue;
+            }
+
+            int hargaItem = hargaMenu[nomorMenu - 1] * jumlahItem;
+            detailPesanan += menu[nomorMenu - 1] + " x " + jumlahItem + " = Rp " + hargaItem + "\n";
+
+            totalHarga += hargaItem;
+        }
+
+        dataPesanan[jumlahPesanan][2] = detailPesanan; 
+        dataPesanan[jumlahPesanan][3] = String.valueOf(totalHarga); 
+        jumlahPesanan++;
+
+        System.out.println("Pesanan berhasil ditambahkan.");
+    }
