@@ -82,3 +82,25 @@ public class kafe9 {
 
         System.out.println("Pesanan berhasil ditambahkan.");
     }
+
+    static void tampilkanDaftarPesanan() {
+        if (jumlahPesanan == 0) {
+            System.out.println("Belum ada pesanan yang tercatat.");
+        } else {
+            System.out.println("===== DAFTAR PESANAN =====");
+            for (int i = 0; i < jumlahPesanan; i++) {
+                System.out.println("Nama Pelanggan: " + dataPesanan[i][0]);
+                System.out.println("Nomor Meja: " + dataPesanan[i][1]);
+                System.out.println("Detail Pesanan:");
+    
+                String[] detail = dataPesanan[i][2].split("\n");
+                for (String item : detail) {
+                    System.out.println("- " + item);
+                }
+    
+                System.out.println("Total Harga Pesanan: Rp " + dataPesanan[i][3]);
+                System.out.println("--------------------------");
+            }
+        }
+    }
+}
